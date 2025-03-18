@@ -21,3 +21,43 @@ a.introduce()
 
 print(a._height)
 print(A._height)
+
+# 继承
+print('============== 继承 ==============')
+class Person:
+    def walk(self):
+        print('我在走路')
+
+    def eat(self):
+        print('我在吃饭')
+
+    def sleep(self):
+        print('我在睡觉')
+
+class Girl(Person):
+    pass    # 如果子类没有内容，则需要一个pass占位符，用于python中的缩进
+girl = Girl()
+girl.walk()
+girl.eat()
+# 继承的传递
+class LittleGirl(Girl):
+    pass
+little_girl = LittleGirl()
+little_girl.eat()
+little_girl.walk()
+# 重写
+print('============== 重写 ==============')
+class Boy(Person):
+    def walk(self):
+        super().walk()  # 调用父类方法
+        print('我在跑步')
+    def eat(self):
+        Person.eat(self)    # 调用父类方法
+        print('我在吃冰棍')
+    def sleep(self):
+        super(Boy, self).sleep()    # 如果传入的是父类的类名，那么调用的就是父类中的重写方法
+        print('我在睡午觉')
+boy = Boy()
+boy.walk()
+boy.eat()
+boy.sleep()
